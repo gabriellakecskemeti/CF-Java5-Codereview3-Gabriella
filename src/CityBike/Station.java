@@ -2,14 +2,14 @@ package CityBike;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Iterator;
 
 public class Station {
 
     private int stationId;
     private String location;
     private ArrayList<Bike> bikes;
-    private static final int maxBikeZahl=5;
-
+    private static final int maxBike=5;
 
 
     public Station(int stationId, String location) {
@@ -31,13 +31,13 @@ public class Station {
     }
 
     public static int getMaxBikeZahl() {
-        return maxBikeZahl;
+        return maxBike;
     }
 
 
     //Create a method of the Station class, addBike()
     public boolean addBike(Bike bikeObj){
-        if (this.getMaxBikeZahl()==this.bikes.size()){
+        if (getMaxBikeZahl()==this.bikes.size()){
             System.out.println("\nThe station "+this.getLocation()+" is full! Please go to another Place to return!");
             return false;
         }else{
@@ -48,13 +48,24 @@ public class Station {
 
 //Method to remove the rented bike from the station
     public void removeRentedBike(Bike bikeObj) {
-        for (int x=0;x<this.bikes.size();x++) {                    //loop is running bis x<loop size
+        if (!bikes.removeIf(element -> element.getBikeID() == bikeObj.getBikeID())){
+            System.out.println("I can not remove the bike from the Station!");
+        }
+
+        /*for (Iterator<Bike> iterator = bikes.iterator(); iterator.hasNext(); ) {
+            Bike element = iterator.next();
+            if (element.getBikeID()==bikeObj.getBikeID()) {
+                iterator.remove();
+            }
+        }*/
+
+
+        /*for (int x=0;x<this.bikes.size();x++) {                    //loop is running bis x<loop size
             if (bikes.get(x).getBikeID()==bikeObj.getBikeID()){
                 this.bikes.remove(x);                              //remove bike von station
             }
-        }
+        }*/
     }
-
 
 
     public static void rentBike(Bike bikeX, Station stationY,User userZ){   //user rents bike x from station y)
@@ -86,9 +97,16 @@ public class Station {
         if (this.bikes.size()==0){
             System.out.println("There are no bikes at this Station right now!");
         }else{
-            for (Bike element:this.bikes) {
-                System.out.println("BikeID: "+element.getBikeID()+"   Colour:  "+element.getColour());
+            Bike element;
+            for (Iterator<Bike> iterator = this.bikes.iterator(); iterator.hasNext(); ) {
+                element = iterator.next();
+                System.out.println("BikeID: " + element.getBikeID() + "   Colour:  " + element.getColour());
             }
+
+
+            /*for (Bike element:this.bikes) {
+                System.out.println("BikeID: "+element.getBikeID()+"   Colour:  "+element.getColour());
+            }*/
         }
     }
 

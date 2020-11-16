@@ -29,6 +29,12 @@ public class TestApp {
         allBikes.put(b7.getBikeID(), b7);
         allBikes.put(b8.getBikeID(), b8);
 
+        System.out.println("Printing all items of hash map");
+        for(Map.Entry m : allBikes.entrySet()){
+            System.out.println(m.getKey()+" "+m.getValue()+allBikes.get(m).getColour());
+        }
+
+
 
 //Create 3 Station objects in your main() and put them in a HashMap - allStations (better name than Station)
         Station s1= new Station(1,"Vorgarten Straße 7");
@@ -46,6 +52,8 @@ public class TestApp {
         s1.addBike(b1);
         s1.addBike(b2);
         s1.addBike(b3);
+        s1.addBike(b8);
+
         s2.addBike(b4);
         s2.addBike(b5);
         s2.addBike(b6);
@@ -63,7 +71,7 @@ public class TestApp {
         User user3= new User("Falco","Mahr");
         User user4= new User("Andrea","Mayer");
 
-        ArrayList<User> allUsers =new ArrayList<>(); //creating hashmap to list all users
+        ArrayList<User> allUsers =new ArrayList<>(); //creating ArrayList to list all users
         allUsers.add(user1);
         allUsers.add(user2);
         allUsers.add(user3);
@@ -74,9 +82,11 @@ public class TestApp {
 
         Station.rentBike(b3,s1,user1);
         Station.rentBike(b1,s1,user1);  //user1 rents second bike
-
+        s1.printStationInfo();
 
         Station.returnBike(b3,s2,user1);
+
+
         user1.listRentTracking();       //rent tracking of user1
 
         Station.rentBike(b2,s1,user2);

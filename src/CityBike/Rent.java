@@ -1,5 +1,6 @@
 package CityBike;
 
+import java.sql.Date;
 import java.time.LocalDateTime;
 
 public class Rent {
@@ -7,6 +8,7 @@ public class Rent {
     private int bikeID;
     private LocalDateTime rentStart;
     private LocalDateTime rentEnd;
+
 
 
     public Rent(int bikeID, LocalDateTime rentStart, LocalDateTime rentEnd) {
@@ -43,7 +45,7 @@ public class Rent {
     public String toString() {
         return "Rent{" +
                 "bikeID=" + bikeID +
-                ", rentStart=" + rentStart +
+                ", rentStart=" + rentStart.getHour()+":"+rentStart.getMinute() +
                 ", rentEnd=" + rentEnd +
                 '}';
     }

@@ -49,10 +49,7 @@ public class User {
 
     public void UserRentsBike(Bike bikeObj){
         this.userRentedBikes.add(bikeObj);
-        //tracking of rent time
-        //LocalDateTime.parse("")
         rentTracking.add(new Rent(bikeObj.getBikeID(), LocalDateTime.now(),null));
-        //System.out.println(rentTracking);
     }
 
     public void userReturnsBike(Bike bikeObj){
@@ -65,8 +62,14 @@ public class User {
     }
 
     //method add timestamp in rent tracking to the rentend
+
+    /**
+     * time stamp at returning bike
+     * @param bikeObj
+     * @return
+     */
     public boolean setBikeRentEnd(Bike bikeObj){
-        for (Rent element:this.rentTracking) {
+        for (Rent element:rentTracking) {
             //System.out.println(element);
             if(element.getBikeID()== bikeObj.getBikeID() && element.getRentEnd()==null){
                 element.setRentEnd(LocalDateTime.now());
@@ -76,7 +79,9 @@ public class User {
         return false;
     }
 
-    //Method lists the user data and the rented bikes and the rent start
+     /**
+     * Method lists the user data and the rented bikes and the rent start
+     */
     public void listUserInfo(){
         System.out.println("\nUser ID: "+this.userId+"  Name:   "+this.userFirstName+" "+this.userSurname+"     has following Bikes:");
         if (this.userRentedBikes.size()==0){
@@ -89,6 +94,12 @@ public class User {
     }
 
     //give back the start date from opened Rent item
+
+    /**
+     * Searcing in RentTracking Arraylist the bikes which are actually rented.
+     * @param bikeObj
+     * @return the startTime, user rented the bike
+     */
     public LocalDateTime getBikeRentStartAct(Bike bikeObj){
         for (Rent element:this.rentTracking) {
             if(element.getBikeID()== bikeObj.getBikeID() && element.getRentEnd()==null){
@@ -103,7 +114,6 @@ public class User {
     public LocalDateTime getBikeRentEnd(Bike bikeObj,LocalDateTime rentstart){
         this.listRentTracking();
         for (Rent element:this.rentTracking) {
-
             if(element.getBikeID()== bikeObj.getBikeID() && element.getRentStart().equals(rentstart)){
                 return element.getRentEnd();
             }
