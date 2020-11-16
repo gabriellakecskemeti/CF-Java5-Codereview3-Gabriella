@@ -1,5 +1,6 @@
 package CityBike;
 
+import java.time.Duration;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 
@@ -132,10 +133,15 @@ public class User {
     }
 
     public void listRentTracking(){
+        Duration aa=null;
+
         System.out.println("\nRent tracking of: "+this.userFirstName+"  "+this.userSurname);
         for (Rent x:this.rentTracking) {
+            if (x.getRentEnd()!= null) {
+                aa = Duration.between(x.getRentStart(), x.getRentEnd());
+            }
             System.out.println("Bike ID: "+x.getBikeID()+"  rent start: "+x.getRentStart()
-                    +" rent end: "+x.getRentEnd());
+                    +" rent end: "+x.getRentEnd()+" Duration: "+aa);
         }
 
     }

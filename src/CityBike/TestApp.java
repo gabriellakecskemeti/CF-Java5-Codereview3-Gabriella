@@ -30,10 +30,10 @@ public class TestApp {
         allBikes.put(b8.getBikeID(), b8);
 
         System.out.println("Printing all items of hash map");
-        for(Map.Entry m : allBikes.entrySet()){
-            System.out.println(m.getKey()+" "+m.getValue()+allBikes.get(m).getColour());
+       for(Map.Entry m : allBikes.entrySet()){
+           Bike bikeobj = (Bike)m.getValue();
+            System.out.println("Key of Map: "+ m.getKey()+"   Bike ID: "+bikeobj.getBikeID()+"   "+bikeobj.getColour());
         }
-
 
 
 //Create 3 Station objects in your main() and put them in a HashMap - allStations (better name than Station)
